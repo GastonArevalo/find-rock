@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 
 import ArtistCard from "./artist-card";
+import Loading from "./loading";
+import Error from "./error";
 let termino;
 class SearchResult extends Component {
   state = {
+    loading: false,
     data: {
       similarartists: {
         artist: [],
@@ -19,15 +22,22 @@ class SearchResult extends Component {
     );
   }
   fetchData = async (url) => {
+    this.setState({ loading: true });
     const response = await fetch(url);
     const data = await response.json();
     console.log(data, "lo que trae la api");
-    this.setState({ data: data });
+    if (data.error) {
+      this.setState({ loading: false, error: true, message: data.message });
+    } else {
+      this.setState({ data: data, loading: false });
+    }
   };
 
   render() {
     return (
       <React.Fragment>
+        {this.state.loading && <Loading />}
+        {this.state.error && <Error message={this.state.message} />}
         <div className="container">
           <div className="row">
             {this.state.data.similarartists.artist.map((item, i) => {

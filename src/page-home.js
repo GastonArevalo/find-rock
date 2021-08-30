@@ -2,6 +2,15 @@ import React from "react";
 import "./page-home.css";
 import logo from "./logo.svg";
 class PageHome extends React.Component {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.history.push("/busqueda?" + this.state.busqueda);
+  };
+  onChange = (e) => {
+    this.setState({
+      busqueda: e.target.value,
+    });
+  };
   state = {
     busqueda: "",
   };
@@ -21,13 +30,15 @@ class PageHome extends React.Component {
                   type="text"
                   id="buscar"
                   placeholder="Buscar"
-                  onChange={this.props.onChange}
+                  onChange={this.onChange}
                   name="busqueda"
                   value={this.props.busqueda}
                 />
               </div>
               <div className="actions">
-                <button className="btng">Search Similar Artist</button>
+                <button className="btng" type="submit">
+                  Search Similar Artist
+                </button>
               </div>
             </form>
           </div>
