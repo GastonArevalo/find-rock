@@ -1,0 +1,18 @@
+.margen50 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.top50 {
+  margin-top: 50px;
+}
+.centrar {
+  text-align: center;
+}
+.pic-artist {
+  width: 300px;
+  border-radius: 50%;
+  border: solid 1px #f4f4f4;
+}
+body {
+  color: #444;
+}

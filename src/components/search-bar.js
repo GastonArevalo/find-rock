@@ -1,6 +1,7 @@
 import React from "react";
 import "./search-bar.css";
 import logo from "../logo.svg";
+import { Link } from "react-router-dom";
 class SearchBar extends React.Component {
   state = {
     busqueda: "",
@@ -24,7 +25,9 @@ class SearchBar extends React.Component {
       <React.Fragment>
         <div className="row mt-2">
           <div className="col-md-2">
-            <img src={logo} alt="logo FindRock" className="logo-barra" />
+            <Link to="/">
+              <img src={logo} alt="logo FindRock" className="logo-barra" />
+            </Link>
           </div>
           <div className="col-md-4">
             <form
@@ -37,7 +40,9 @@ class SearchBar extends React.Component {
                   type="text"
                   id="buscar"
                   placeholder="Buscar"
-                  onChange={this.handleChange}
+                  onChange={this.props.onChange}
+                  name="busqueda"
+                  value={this.props.busqueda}
                 />
               </div>
             </form>
